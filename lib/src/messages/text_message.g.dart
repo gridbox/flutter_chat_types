@@ -8,7 +8,7 @@ part of 'text_message.dart';
 
 TextMessage _$TextMessageFromJson(Map<String, dynamic> json) => TextMessage(
       author: User.fromJson(json['author'] as Map<String, dynamic>),
-      createdAt: json['createdAt'] as int?,
+      createdAt: (json['createdAt'] as num?)?.toInt(),
       id: json['id'] as String,
       metadata: json['metadata'] as Map<String, dynamic>?,
       previewData: json['previewData'] == null
@@ -23,7 +23,8 @@ TextMessage _$TextMessageFromJson(Map<String, dynamic> json) => TextMessage(
       status: $enumDecodeNullable(_$StatusEnumMap, json['status']),
       text: json['text'] as String,
       type: $enumDecodeNullable(_$MessageTypeEnumMap, json['type']),
-      updatedAt: json['updatedAt'] as int?,
+      updatedAt: (json['updatedAt'] as num?)?.toInt(),
+      isLoading: json['isLoading'] as bool?,
     );
 
 Map<String, dynamic> _$TextMessageToJson(TextMessage instance) {
@@ -47,6 +48,7 @@ Map<String, dynamic> _$TextMessageToJson(TextMessage instance) {
   writeNotNull('status', _$StatusEnumMap[instance.status]);
   val['type'] = _$MessageTypeEnumMap[instance.type]!;
   writeNotNull('updatedAt', instance.updatedAt);
+  writeNotNull('isLoading', instance.isLoading);
   writeNotNull('previewData', instance.previewData?.toJson());
   val['text'] = instance.text;
   return val;

@@ -25,6 +25,7 @@ abstract class SystemMessage extends Message {
     required this.text,
     MessageType? type,
     super.updatedAt,
+    super.isLoading,
   }) : super(type: type ?? MessageType.system);
 
   const factory SystemMessage({
@@ -40,11 +41,11 @@ abstract class SystemMessage extends Message {
     required String text,
     MessageType? type,
     int? updatedAt,
+    bool? isLoading,
   }) = _SystemMessage;
 
   /// Creates a custom message from a map (decoded JSON).
-  factory SystemMessage.fromJson(Map<String, dynamic> json) =>
-      _$SystemMessageFromJson(json);
+  factory SystemMessage.fromJson(Map<String, dynamic> json) => _$SystemMessageFromJson(json);
 
   /// System message content (could be text or translation key).
   final String text;
@@ -63,6 +64,7 @@ abstract class SystemMessage extends Message {
         status,
         text,
         updatedAt,
+        isLoading,
       ];
 
   @override
@@ -78,6 +80,7 @@ abstract class SystemMessage extends Message {
     Status? status,
     String? text,
     int? updatedAt,
+    bool? isLoading,
   });
 
   /// Converts a custom message to the map representation,
@@ -101,6 +104,7 @@ class _SystemMessage extends SystemMessage {
     required super.text,
     super.type,
     super.updatedAt,
+    super.isLoading,
   }) : super._();
 
   @override
@@ -116,24 +120,21 @@ class _SystemMessage extends SystemMessage {
     dynamic status = _Unset,
     String? text,
     dynamic updatedAt = _Unset,
+    dynamic isLoading = _Unset,
   }) =>
       _SystemMessage(
         author: author ?? this.author,
         createdAt: createdAt == _Unset ? this.createdAt : createdAt as int?,
         id: id ?? this.id,
-        metadata: metadata == _Unset
-            ? this.metadata
-            : metadata as Map<String, dynamic>?,
+        metadata: metadata == _Unset ? this.metadata : metadata as Map<String, dynamic>?,
         remoteId: remoteId == _Unset ? this.remoteId : remoteId as String?,
-        repliedMessage: repliedMessage == _Unset
-            ? this.repliedMessage
-            : repliedMessage as Message?,
+        repliedMessage: repliedMessage == _Unset ? this.repliedMessage : repliedMessage as Message?,
         roomId: roomId == _Unset ? this.roomId : roomId as String?,
-        showStatus:
-            showStatus == _Unset ? this.showStatus : showStatus as bool?,
+        showStatus: showStatus == _Unset ? this.showStatus : showStatus as bool?,
         status: status == _Unset ? this.status : status as Status?,
         text: text ?? this.text,
         updatedAt: updatedAt == _Unset ? this.updatedAt : updatedAt as int?,
+        isLoading: isLoading == _Unset ? this.isLoading : isLoading as bool?,
       );
 }
 

@@ -27,6 +27,7 @@ abstract class TextMessage extends Message {
     required this.text,
     MessageType? type,
     super.updatedAt,
+    super.isLoading,
   }) : super(type: type ?? MessageType.text);
 
   const factory TextMessage({
@@ -43,11 +44,11 @@ abstract class TextMessage extends Message {
     required String text,
     MessageType? type,
     int? updatedAt,
+    bool? isLoading,
   }) = _TextMessage;
 
   /// Creates a text message from a map (decoded JSON).
-  factory TextMessage.fromJson(Map<String, dynamic> json) =>
-      _$TextMessageFromJson(json);
+  factory TextMessage.fromJson(Map<String, dynamic> json) => _$TextMessageFromJson(json);
 
   /// Creates a full text message from a partial one.
   factory TextMessage.fromPartial({
@@ -60,6 +61,7 @@ abstract class TextMessage extends Message {
     bool? showStatus,
     Status? status,
     int? updatedAt,
+    bool? isLoading,
   }) =>
       _TextMessage(
         author: author,
@@ -75,6 +77,7 @@ abstract class TextMessage extends Message {
         text: partialText.text,
         type: MessageType.text,
         updatedAt: updatedAt,
+        isLoading: isLoading,
       );
 
   /// See [PreviewData].
@@ -98,6 +101,7 @@ abstract class TextMessage extends Message {
         status,
         text,
         updatedAt,
+        isLoading,
       ];
 
   @override
@@ -114,6 +118,7 @@ abstract class TextMessage extends Message {
     Status? status,
     String? text,
     int? updatedAt,
+    bool? isLoading,
   });
 
   /// Converts a text message to the map representation, encodable to JSON.
@@ -137,6 +142,7 @@ class _TextMessage extends TextMessage {
     required super.text,
     super.type,
     super.updatedAt,
+    super.isLoading,
   }) : super._();
 
   @override
@@ -153,27 +159,22 @@ class _TextMessage extends TextMessage {
     dynamic status = _Unset,
     String? text,
     dynamic updatedAt = _Unset,
+    dynamic isLoading = _Unset,
   }) =>
       _TextMessage(
         author: author ?? this.author,
         createdAt: createdAt == _Unset ? this.createdAt : createdAt as int?,
         id: id ?? this.id,
-        metadata: metadata == _Unset
-            ? this.metadata
-            : metadata as Map<String, dynamic>?,
-        previewData: previewData == _Unset
-            ? this.previewData
-            : previewData as PreviewData?,
+        metadata: metadata == _Unset ? this.metadata : metadata as Map<String, dynamic>?,
+        previewData: previewData == _Unset ? this.previewData : previewData as PreviewData?,
         remoteId: remoteId == _Unset ? this.remoteId : remoteId as String?,
-        repliedMessage: repliedMessage == _Unset
-            ? this.repliedMessage
-            : repliedMessage as Message?,
+        repliedMessage: repliedMessage == _Unset ? this.repliedMessage : repliedMessage as Message?,
         roomId: roomId == _Unset ? this.roomId : roomId as String?,
-        showStatus:
-            showStatus == _Unset ? this.showStatus : showStatus as bool?,
+        showStatus: showStatus == _Unset ? this.showStatus : showStatus as bool?,
         status: status == _Unset ? this.status : status as Status?,
         text: text ?? this.text,
         updatedAt: updatedAt == _Unset ? this.updatedAt : updatedAt as int?,
+        isLoading: isLoading == _Unset ? this.isLoading : isLoading as bool?,
       );
 }
 

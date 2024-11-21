@@ -12,16 +12,7 @@ import 'messages/video_message.dart';
 import 'user.dart' show User;
 
 /// All possible message types.
-enum MessageType {
-  audio,
-  custom,
-  file,
-  image,
-  system,
-  text,
-  unsupported,
-  video
-}
+enum MessageType { audio, custom, file, image, system, text, unsupported, video }
 
 /// All possible statuses message can have.
 enum Status { delivered, error, seen, sending, sent }
@@ -42,6 +33,7 @@ abstract class Message extends Equatable {
     this.status,
     required this.type,
     this.updatedAt,
+    this.isLoading,
   });
 
   /// Creates a particular message from a map (decoded JSON).
@@ -105,6 +97,8 @@ abstract class Message extends Equatable {
   /// Updated message timestamp, in ms.
   final int? updatedAt;
 
+  final bool? isLoading;
+
   /// Creates a copy of the message with an updated data.
   Message copyWith({
     User? author,
@@ -117,6 +111,7 @@ abstract class Message extends Equatable {
     bool? showStatus,
     Status? status,
     int? updatedAt,
+    bool? isLoading,
   });
 
   /// Converts a particular message to the map representation, serializable to JSON.

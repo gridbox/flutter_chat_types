@@ -29,6 +29,7 @@ abstract class ImageMessage extends Message {
     super.updatedAt,
     required this.uri,
     this.width,
+    super.isLoading,
   }) : super(type: type ?? MessageType.image);
 
   const factory ImageMessage({
@@ -48,11 +49,11 @@ abstract class ImageMessage extends Message {
     int? updatedAt,
     required String uri,
     double? width,
+    bool? isLoading,
   }) = _ImageMessage;
 
   /// Creates an image message from a map (decoded JSON).
-  factory ImageMessage.fromJson(Map<String, dynamic> json) =>
-      _$ImageMessageFromJson(json);
+  factory ImageMessage.fromJson(Map<String, dynamic> json) => _$ImageMessageFromJson(json);
 
   /// Creates a full image message from a partial one.
   factory ImageMessage.fromPartial({
@@ -65,6 +66,7 @@ abstract class ImageMessage extends Message {
     bool? showStatus,
     Status? status,
     int? updatedAt,
+    bool? isLoading,
   }) =>
       _ImageMessage(
         author: author,
@@ -83,6 +85,7 @@ abstract class ImageMessage extends Message {
         updatedAt: updatedAt,
         uri: partialImage.uri,
         width: partialImage.width,
+        isLoading: isLoading,
       );
 
   /// Image height in pixels.
@@ -118,6 +121,7 @@ abstract class ImageMessage extends Message {
         updatedAt,
         uri,
         width,
+        isLoading,
       ];
 
   @override
@@ -137,6 +141,7 @@ abstract class ImageMessage extends Message {
     int? updatedAt,
     String? uri,
     double? width,
+    bool? isLoading,
   });
 
   /// Converts an image message to the map representation, encodable to JSON.
@@ -163,6 +168,7 @@ class _ImageMessage extends ImageMessage {
     super.updatedAt,
     required super.uri,
     super.width,
+    super.isLoading,
   }) : super._();
 
   @override
@@ -182,28 +188,25 @@ class _ImageMessage extends ImageMessage {
     dynamic updatedAt = _Unset,
     String? uri,
     dynamic width = _Unset,
+    dynamic isLoading = _Unset,
   }) =>
       _ImageMessage(
         author: author ?? this.author,
         createdAt: createdAt == _Unset ? this.createdAt : createdAt as int?,
         height: height == _Unset ? this.height : height as double?,
         id: id ?? this.id,
-        metadata: metadata == _Unset
-            ? this.metadata
-            : metadata as Map<String, dynamic>?,
+        metadata: metadata == _Unset ? this.metadata : metadata as Map<String, dynamic>?,
         name: name ?? this.name,
         remoteId: remoteId == _Unset ? this.remoteId : remoteId as String?,
-        repliedMessage: repliedMessage == _Unset
-            ? this.repliedMessage
-            : repliedMessage as Message?,
+        repliedMessage: repliedMessage == _Unset ? this.repliedMessage : repliedMessage as Message?,
         roomId: roomId == _Unset ? this.roomId : roomId as String?,
-        showStatus:
-            showStatus == _Unset ? this.showStatus : showStatus as bool?,
+        showStatus: showStatus == _Unset ? this.showStatus : showStatus as bool?,
         size: size ?? this.size,
         status: status == _Unset ? this.status : status as Status?,
         updatedAt: updatedAt == _Unset ? this.updatedAt : updatedAt as int?,
         uri: uri ?? this.uri,
         width: width == _Unset ? this.width : width as double?,
+        isLoading: isLoading == _Unset ? this.isLoading : isLoading as bool?,
       );
 }
 

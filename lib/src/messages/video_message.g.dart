@@ -8,7 +8,7 @@ part of 'video_message.dart';
 
 VideoMessage _$VideoMessageFromJson(Map<String, dynamic> json) => VideoMessage(
       author: User.fromJson(json['author'] as Map<String, dynamic>),
-      createdAt: json['createdAt'] as int?,
+      createdAt: (json['createdAt'] as num?)?.toInt(),
       height: (json['height'] as num?)?.toDouble(),
       id: json['id'] as String,
       metadata: json['metadata'] as Map<String, dynamic>?,
@@ -22,9 +22,10 @@ VideoMessage _$VideoMessageFromJson(Map<String, dynamic> json) => VideoMessage(
       size: json['size'] as num,
       status: $enumDecodeNullable(_$StatusEnumMap, json['status']),
       type: $enumDecodeNullable(_$MessageTypeEnumMap, json['type']),
-      updatedAt: json['updatedAt'] as int?,
+      updatedAt: (json['updatedAt'] as num?)?.toInt(),
       uri: json['uri'] as String,
       width: (json['width'] as num?)?.toDouble(),
+      isLoading: json['isLoading'] as bool?,
     );
 
 Map<String, dynamic> _$VideoMessageToJson(VideoMessage instance) {
@@ -48,6 +49,7 @@ Map<String, dynamic> _$VideoMessageToJson(VideoMessage instance) {
   writeNotNull('status', _$StatusEnumMap[instance.status]);
   val['type'] = _$MessageTypeEnumMap[instance.type]!;
   writeNotNull('updatedAt', instance.updatedAt);
+  writeNotNull('isLoading', instance.isLoading);
   writeNotNull('height', instance.height);
   val['name'] = instance.name;
   val['size'] = instance.size;

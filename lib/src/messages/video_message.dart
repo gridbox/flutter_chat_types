@@ -29,6 +29,8 @@ abstract class VideoMessage extends Message {
     super.updatedAt,
     required this.uri,
     this.width,
+    super.isLoading,
+    this.onPlay,
   }) : super(type: type ?? MessageType.video);
 
   const factory VideoMessage({
@@ -48,11 +50,12 @@ abstract class VideoMessage extends Message {
     int? updatedAt,
     required String uri,
     double? width,
+    bool? isLoading,
+    void Function()? onPlay,
   }) = _VideoMessage;
 
   /// Creates a video message from a map (decoded JSON).
-  factory VideoMessage.fromJson(Map<String, dynamic> json) =>
-      _$VideoMessageFromJson(json);
+  factory VideoMessage.fromJson(Map<String, dynamic> json) => _$VideoMessageFromJson(json);
 
   /// Creates a full video message from a partial one.
   factory VideoMessage.fromPartial({
@@ -65,6 +68,8 @@ abstract class VideoMessage extends Message {
     bool? showStatus,
     Status? status,
     int? updatedAt,
+    bool? isLoading,
+    void Function()? onPlay,
   }) =>
       _VideoMessage(
         author: author,
@@ -83,6 +88,8 @@ abstract class VideoMessage extends Message {
         updatedAt: updatedAt,
         uri: partialVideo.uri,
         width: partialVideo.width,
+        isLoading: isLoading,
+        onPlay: onPlay,
       );
 
   /// Video height in pixels.
@@ -99,6 +106,10 @@ abstract class VideoMessage extends Message {
 
   /// Video width in pixels.
   final double? width;
+
+  /// Callback when play button is pressed.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  final void Function()? onPlay;
 
   /// Equatable props.
   @override
@@ -118,6 +129,8 @@ abstract class VideoMessage extends Message {
         updatedAt,
         uri,
         width,
+        isLoading,
+        onPlay,
       ];
 
   @override
@@ -137,6 +150,8 @@ abstract class VideoMessage extends Message {
     int? updatedAt,
     String? uri,
     double? width,
+    bool? isLoading,
+    void Function()? onPlay,
   });
 
   /// Converts an video message to the map representation, encodable to JSON.
@@ -163,6 +178,8 @@ class _VideoMessage extends VideoMessage {
     super.updatedAt,
     required super.uri,
     super.width,
+    super.isLoading,
+    super.onPlay,
   }) : super._();
 
   @override
@@ -182,28 +199,27 @@ class _VideoMessage extends VideoMessage {
     dynamic updatedAt = _Unset,
     String? uri,
     dynamic width = _Unset,
+    dynamic isLoading = _Unset,
+    dynamic onPlay = _Unset,
   }) =>
       _VideoMessage(
         author: author ?? this.author,
         createdAt: createdAt == _Unset ? this.createdAt : createdAt as int?,
         height: height == _Unset ? this.height : height as double?,
         id: id ?? this.id,
-        metadata: metadata == _Unset
-            ? this.metadata
-            : metadata as Map<String, dynamic>?,
+        metadata: metadata == _Unset ? this.metadata : metadata as Map<String, dynamic>?,
         name: name ?? this.name,
         remoteId: remoteId == _Unset ? this.remoteId : remoteId as String?,
-        repliedMessage: repliedMessage == _Unset
-            ? this.repliedMessage
-            : repliedMessage as Message?,
+        repliedMessage: repliedMessage == _Unset ? this.repliedMessage : repliedMessage as Message?,
         roomId: roomId == _Unset ? this.roomId : roomId as String?,
-        showStatus:
-            showStatus == _Unset ? this.showStatus : showStatus as bool?,
+        showStatus: showStatus == _Unset ? this.showStatus : showStatus as bool?,
         size: size ?? this.size,
         status: status == _Unset ? this.status : status as Status?,
         updatedAt: updatedAt == _Unset ? this.updatedAt : updatedAt as int?,
         uri: uri ?? this.uri,
         width: width == _Unset ? this.width : width as double?,
+        isLoading: isLoading == _Unset ? this.isLoading : isLoading as bool?,
+        onPlay: onPlay == _Unset ? this.onPlay : onPlay as void Function()?,
       );
 }
 

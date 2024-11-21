@@ -25,6 +25,7 @@ abstract class CustomMessage extends Message {
     super.status,
     MessageType? type,
     super.updatedAt,
+    super.isLoading,
   }) : super(type: type ?? MessageType.custom);
 
   const factory CustomMessage({
@@ -39,11 +40,11 @@ abstract class CustomMessage extends Message {
     Status? status,
     MessageType? type,
     int? updatedAt,
+    bool? isLoading,
   }) = _CustomMessage;
 
   /// Creates a custom message from a map (decoded JSON).
-  factory CustomMessage.fromJson(Map<String, dynamic> json) =>
-      _$CustomMessageFromJson(json);
+  factory CustomMessage.fromJson(Map<String, dynamic> json) => _$CustomMessageFromJson(json);
 
   /// Creates a full custom message from a partial one.
   factory CustomMessage.fromPartial({
@@ -56,6 +57,7 @@ abstract class CustomMessage extends Message {
     bool? showStatus,
     Status? status,
     int? updatedAt,
+    bool? isLoading,
   }) =>
       _CustomMessage(
         author: author,
@@ -69,6 +71,7 @@ abstract class CustomMessage extends Message {
         status: status,
         type: MessageType.custom,
         updatedAt: updatedAt,
+        isLoading: isLoading,
       );
 
   /// Equatable props.
@@ -84,6 +87,7 @@ abstract class CustomMessage extends Message {
         showStatus,
         status,
         updatedAt,
+        isLoading,
       ];
 
   @override
@@ -98,6 +102,7 @@ abstract class CustomMessage extends Message {
     bool? showStatus,
     Status? status,
     int? updatedAt,
+    bool? isLoading,
   });
 
   /// Converts a custom message to the map representation,
@@ -120,6 +125,7 @@ class _CustomMessage extends CustomMessage {
     super.status,
     super.type,
     super.updatedAt,
+    super.isLoading,
   }) : super._();
 
   @override
@@ -134,23 +140,20 @@ class _CustomMessage extends CustomMessage {
     dynamic showStatus = _Unset,
     dynamic status = _Unset,
     dynamic updatedAt = _Unset,
+    dynamic isLoading = _Unset,
   }) =>
       _CustomMessage(
         author: author ?? this.author,
         createdAt: createdAt == _Unset ? this.createdAt : createdAt as int?,
         id: id ?? this.id,
-        metadata: metadata == _Unset
-            ? this.metadata
-            : metadata as Map<String, dynamic>?,
+        metadata: metadata == _Unset ? this.metadata : metadata as Map<String, dynamic>?,
         remoteId: remoteId == _Unset ? this.remoteId : remoteId as String?,
-        repliedMessage: repliedMessage == _Unset
-            ? this.repliedMessage
-            : repliedMessage as Message?,
+        repliedMessage: repliedMessage == _Unset ? this.repliedMessage : repliedMessage as Message?,
         roomId: roomId == _Unset ? this.roomId : roomId as String?,
-        showStatus:
-            showStatus == _Unset ? this.showStatus : showStatus as bool?,
+        showStatus: showStatus == _Unset ? this.showStatus : showStatus as bool?,
         status: status == _Unset ? this.status : status as Status?,
         updatedAt: updatedAt == _Unset ? this.updatedAt : updatedAt as int?,
+        isLoading: isLoading == _Unset ? this.isLoading : isLoading as bool?,
       );
 }
 

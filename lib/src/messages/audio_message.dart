@@ -30,6 +30,8 @@ abstract class AudioMessage extends Message {
     super.updatedAt,
     required this.uri,
     this.waveForm,
+    super.isLoading,
+    this.onPlay,
   }) : super(type: type ?? MessageType.audio);
 
   const factory AudioMessage({
@@ -50,11 +52,12 @@ abstract class AudioMessage extends Message {
     int? updatedAt,
     required String uri,
     List<double>? waveForm,
+    bool? isLoading,
+    void Function()? onPlay,
   }) = _AudioMessage;
 
   /// Creates an audio message from a map (decoded JSON).
-  factory AudioMessage.fromJson(Map<String, dynamic> json) =>
-      _$AudioMessageFromJson(json);
+  factory AudioMessage.fromJson(Map<String, dynamic> json) => _$AudioMessageFromJson(json);
 
   /// Creates a full audio message from a partial one.
   factory AudioMessage.fromPartial({
@@ -67,6 +70,8 @@ abstract class AudioMessage extends Message {
     bool? showStatus,
     Status? status,
     int? updatedAt,
+    bool? isLoading,
+    void Function()? onPlay,
   }) =>
       _AudioMessage(
         author: author,
@@ -86,6 +91,8 @@ abstract class AudioMessage extends Message {
         updatedAt: updatedAt,
         uri: partialAudio.uri,
         waveForm: partialAudio.waveForm,
+        isLoading: isLoading,
+        onPlay: onPlay,
       );
 
   /// The length of the audio.
@@ -106,6 +113,10 @@ abstract class AudioMessage extends Message {
   /// Wave form represented as a list of decibel levels.
   final List<double>? waveForm;
 
+  /// Callback when play button is pressed.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  final void Function()? onPlay;
+
   /// Equatable props.
   @override
   List<Object?> get props => [
@@ -125,6 +136,8 @@ abstract class AudioMessage extends Message {
         updatedAt,
         uri,
         waveForm,
+        isLoading,
+        onPlay,
       ];
 
   @override
@@ -145,6 +158,8 @@ abstract class AudioMessage extends Message {
     int? updatedAt,
     String? uri,
     List<double>? waveForm,
+    bool? isLoading,
+    void Function()? onPlay,
   });
 
   /// Converts an audio message to the map representation, encodable to JSON.
@@ -172,6 +187,8 @@ class _AudioMessage extends AudioMessage {
     super.updatedAt,
     required super.uri,
     super.waveForm,
+    super.isLoading,
+    super.onPlay,
   }) : super._();
 
   @override
@@ -192,30 +209,28 @@ class _AudioMessage extends AudioMessage {
     dynamic updatedAt = _Unset,
     String? uri,
     dynamic waveForm = _Unset,
+    dynamic isLoading = _Unset,
+    dynamic onPlay = _Unset,
   }) =>
       _AudioMessage(
         author: author ?? this.author,
         createdAt: createdAt == _Unset ? this.createdAt : createdAt as int?,
         duration: duration ?? this.duration,
         id: id ?? this.id,
-        metadata: metadata == _Unset
-            ? this.metadata
-            : metadata as Map<String, dynamic>?,
+        metadata: metadata == _Unset ? this.metadata : metadata as Map<String, dynamic>?,
         mimeType: mimeType == _Unset ? this.mimeType : mimeType as String?,
         name: name ?? this.name,
         remoteId: remoteId == _Unset ? this.remoteId : remoteId as String?,
-        repliedMessage: repliedMessage == _Unset
-            ? this.repliedMessage
-            : repliedMessage as Message?,
+        repliedMessage: repliedMessage == _Unset ? this.repliedMessage : repliedMessage as Message?,
         roomId: roomId == _Unset ? this.roomId : roomId as String?,
-        showStatus:
-            showStatus == _Unset ? this.showStatus : showStatus as bool?,
+        showStatus: showStatus == _Unset ? this.showStatus : showStatus as bool?,
         size: size ?? this.size,
         status: status == _Unset ? this.status : status as Status?,
         updatedAt: updatedAt == _Unset ? this.updatedAt : updatedAt as int?,
         uri: uri ?? this.uri,
-        waveForm:
-            waveForm == _Unset ? this.waveForm : waveForm as List<double>?,
+        waveForm: waveForm == _Unset ? this.waveForm : waveForm as List<double>?,
+        isLoading: isLoading == _Unset ? this.isLoading : isLoading as bool?,
+        onPlay: onPlay == _Unset ? this.onPlay : onPlay as void Function()?,
       );
 }
 
