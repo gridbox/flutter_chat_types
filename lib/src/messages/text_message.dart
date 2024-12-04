@@ -28,6 +28,7 @@ abstract class TextMessage extends Message {
     MessageType? type,
     super.updatedAt,
     super.isLoading,
+    super.selected,
   }) : super(type: type ?? MessageType.text);
 
   const factory TextMessage({
@@ -45,6 +46,7 @@ abstract class TextMessage extends Message {
     MessageType? type,
     int? updatedAt,
     bool? isLoading,
+    bool? selected,
   }) = _TextMessage;
 
   /// Creates a text message from a map (decoded JSON).
@@ -62,6 +64,7 @@ abstract class TextMessage extends Message {
     Status? status,
     int? updatedAt,
     bool? isLoading,
+    bool? selected,
   }) =>
       _TextMessage(
         author: author,
@@ -78,6 +81,7 @@ abstract class TextMessage extends Message {
         type: MessageType.text,
         updatedAt: updatedAt,
         isLoading: isLoading,
+        selected: selected,
       );
 
   /// See [PreviewData].
@@ -102,6 +106,7 @@ abstract class TextMessage extends Message {
         text,
         updatedAt,
         isLoading,
+        selected,
       ];
 
   @override
@@ -119,6 +124,7 @@ abstract class TextMessage extends Message {
     String? text,
     int? updatedAt,
     bool? isLoading,
+    bool? selected,
   });
 
   /// Converts a text message to the map representation, encodable to JSON.
@@ -143,6 +149,7 @@ class _TextMessage extends TextMessage {
     super.type,
     super.updatedAt,
     super.isLoading,
+    super.selected,
   }) : super._();
 
   @override
@@ -160,6 +167,7 @@ class _TextMessage extends TextMessage {
     String? text,
     dynamic updatedAt = _Unset,
     dynamic isLoading = _Unset,
+    dynamic selected = _Unset,
   }) =>
       _TextMessage(
         author: author ?? this.author,
@@ -175,6 +183,7 @@ class _TextMessage extends TextMessage {
         text: text ?? this.text,
         updatedAt: updatedAt == _Unset ? this.updatedAt : updatedAt as int?,
         isLoading: isLoading == _Unset ? this.isLoading : isLoading as bool?,
+        selected: selected == _Unset ? this.selected : selected as bool?,
       );
 }
 

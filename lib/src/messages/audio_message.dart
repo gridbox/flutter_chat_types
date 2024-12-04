@@ -32,6 +32,7 @@ abstract class AudioMessage extends Message {
     this.waveForm,
     super.isLoading,
     this.onPlay,
+    super.selected,
   }) : super(type: type ?? MessageType.audio);
 
   const factory AudioMessage({
@@ -54,6 +55,7 @@ abstract class AudioMessage extends Message {
     List<double>? waveForm,
     bool? isLoading,
     void Function()? onPlay,
+    bool? selected,
   }) = _AudioMessage;
 
   /// Creates an audio message from a map (decoded JSON).
@@ -72,6 +74,7 @@ abstract class AudioMessage extends Message {
     int? updatedAt,
     bool? isLoading,
     void Function()? onPlay,
+    bool? selected,
   }) =>
       _AudioMessage(
         author: author,
@@ -93,6 +96,7 @@ abstract class AudioMessage extends Message {
         waveForm: partialAudio.waveForm,
         isLoading: isLoading,
         onPlay: onPlay,
+        selected: selected,
       );
 
   /// The length of the audio.
@@ -138,6 +142,7 @@ abstract class AudioMessage extends Message {
         waveForm,
         isLoading,
         onPlay,
+        selected,
       ];
 
   @override
@@ -160,6 +165,7 @@ abstract class AudioMessage extends Message {
     List<double>? waveForm,
     bool? isLoading,
     void Function()? onPlay,
+    bool? selected,
   });
 
   /// Converts an audio message to the map representation, encodable to JSON.
@@ -189,6 +195,7 @@ class _AudioMessage extends AudioMessage {
     super.waveForm,
     super.isLoading,
     super.onPlay,
+    super.selected,
   }) : super._();
 
   @override
@@ -211,6 +218,7 @@ class _AudioMessage extends AudioMessage {
     dynamic waveForm = _Unset,
     dynamic isLoading = _Unset,
     dynamic onPlay = _Unset,
+    dynamic selected = _Unset,
   }) =>
       _AudioMessage(
         author: author ?? this.author,
@@ -231,6 +239,7 @@ class _AudioMessage extends AudioMessage {
         waveForm: waveForm == _Unset ? this.waveForm : waveForm as List<double>?,
         isLoading: isLoading == _Unset ? this.isLoading : isLoading as bool?,
         onPlay: onPlay == _Unset ? this.onPlay : onPlay as void Function()?,
+        selected: selected == _Unset ? this.selected : selected as bool?,
       );
 }
 

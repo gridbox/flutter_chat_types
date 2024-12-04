@@ -31,6 +31,7 @@ abstract class VideoMessage extends Message {
     this.width,
     super.isLoading,
     this.onPlay,
+    super.selected,
   }) : super(type: type ?? MessageType.video);
 
   const factory VideoMessage({
@@ -52,6 +53,7 @@ abstract class VideoMessage extends Message {
     double? width,
     bool? isLoading,
     void Function()? onPlay,
+    bool? selected,
   }) = _VideoMessage;
 
   /// Creates a video message from a map (decoded JSON).
@@ -70,6 +72,7 @@ abstract class VideoMessage extends Message {
     int? updatedAt,
     bool? isLoading,
     void Function()? onPlay,
+    bool? selected,
   }) =>
       _VideoMessage(
         author: author,
@@ -90,6 +93,7 @@ abstract class VideoMessage extends Message {
         width: partialVideo.width,
         isLoading: isLoading,
         onPlay: onPlay,
+        selected: selected,
       );
 
   /// Video height in pixels.
@@ -131,6 +135,7 @@ abstract class VideoMessage extends Message {
         width,
         isLoading,
         onPlay,
+        selected,
       ];
 
   @override
@@ -152,6 +157,7 @@ abstract class VideoMessage extends Message {
     double? width,
     bool? isLoading,
     void Function()? onPlay,
+    bool? selected,
   });
 
   /// Converts an video message to the map representation, encodable to JSON.
@@ -180,6 +186,7 @@ class _VideoMessage extends VideoMessage {
     super.width,
     super.isLoading,
     super.onPlay,
+    super.selected,
   }) : super._();
 
   @override
@@ -201,6 +208,7 @@ class _VideoMessage extends VideoMessage {
     dynamic width = _Unset,
     dynamic isLoading = _Unset,
     dynamic onPlay = _Unset,
+    dynamic selected = _Unset,
   }) =>
       _VideoMessage(
         author: author ?? this.author,
@@ -220,6 +228,7 @@ class _VideoMessage extends VideoMessage {
         width: width == _Unset ? this.width : width as double?,
         isLoading: isLoading == _Unset ? this.isLoading : isLoading as bool?,
         onPlay: onPlay == _Unset ? this.onPlay : onPlay as void Function()?,
+        selected: selected == _Unset ? this.selected : selected as bool?,
       );
 }
 

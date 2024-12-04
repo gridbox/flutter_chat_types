@@ -26,6 +26,7 @@ abstract class SystemMessage extends Message {
     MessageType? type,
     super.updatedAt,
     super.isLoading,
+    super.selected,
   }) : super(type: type ?? MessageType.system);
 
   const factory SystemMessage({
@@ -42,6 +43,7 @@ abstract class SystemMessage extends Message {
     MessageType? type,
     int? updatedAt,
     bool? isLoading,
+    bool? selected,
   }) = _SystemMessage;
 
   /// Creates a custom message from a map (decoded JSON).
@@ -65,6 +67,7 @@ abstract class SystemMessage extends Message {
         text,
         updatedAt,
         isLoading,
+        selected,
       ];
 
   @override
@@ -81,6 +84,7 @@ abstract class SystemMessage extends Message {
     String? text,
     int? updatedAt,
     bool? isLoading,
+    bool? selected,
   });
 
   /// Converts a custom message to the map representation,
@@ -105,6 +109,7 @@ class _SystemMessage extends SystemMessage {
     super.type,
     super.updatedAt,
     super.isLoading,
+    super.selected,
   }) : super._();
 
   @override
@@ -121,6 +126,7 @@ class _SystemMessage extends SystemMessage {
     String? text,
     dynamic updatedAt = _Unset,
     dynamic isLoading = _Unset,
+    dynamic selected = _Unset,
   }) =>
       _SystemMessage(
         author: author ?? this.author,
@@ -135,6 +141,7 @@ class _SystemMessage extends SystemMessage {
         text: text ?? this.text,
         updatedAt: updatedAt == _Unset ? this.updatedAt : updatedAt as int?,
         isLoading: isLoading == _Unset ? this.isLoading : isLoading as bool?,
+        selected: selected == _Unset ? this.selected : selected as bool?,
       );
 }
 

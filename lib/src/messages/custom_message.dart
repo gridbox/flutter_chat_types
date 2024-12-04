@@ -26,6 +26,7 @@ abstract class CustomMessage extends Message {
     MessageType? type,
     super.updatedAt,
     super.isLoading,
+    super.selected,
   }) : super(type: type ?? MessageType.custom);
 
   const factory CustomMessage({
@@ -41,6 +42,7 @@ abstract class CustomMessage extends Message {
     MessageType? type,
     int? updatedAt,
     bool? isLoading,
+    bool? selected,
   }) = _CustomMessage;
 
   /// Creates a custom message from a map (decoded JSON).
@@ -58,6 +60,7 @@ abstract class CustomMessage extends Message {
     Status? status,
     int? updatedAt,
     bool? isLoading,
+    bool? selected,
   }) =>
       _CustomMessage(
         author: author,
@@ -72,6 +75,7 @@ abstract class CustomMessage extends Message {
         type: MessageType.custom,
         updatedAt: updatedAt,
         isLoading: isLoading,
+        selected: selected,
       );
 
   /// Equatable props.
@@ -88,6 +92,7 @@ abstract class CustomMessage extends Message {
         status,
         updatedAt,
         isLoading,
+        selected,
       ];
 
   @override
@@ -103,6 +108,7 @@ abstract class CustomMessage extends Message {
     Status? status,
     int? updatedAt,
     bool? isLoading,
+    bool? selected,
   });
 
   /// Converts a custom message to the map representation,
@@ -126,6 +132,7 @@ class _CustomMessage extends CustomMessage {
     super.type,
     super.updatedAt,
     super.isLoading,
+    super.selected,
   }) : super._();
 
   @override
@@ -141,6 +148,7 @@ class _CustomMessage extends CustomMessage {
     dynamic status = _Unset,
     dynamic updatedAt = _Unset,
     dynamic isLoading = _Unset,
+    dynamic selected = _Unset,
   }) =>
       _CustomMessage(
         author: author ?? this.author,
@@ -154,6 +162,7 @@ class _CustomMessage extends CustomMessage {
         status: status == _Unset ? this.status : status as Status?,
         updatedAt: updatedAt == _Unset ? this.updatedAt : updatedAt as int?,
         isLoading: isLoading == _Unset ? this.isLoading : isLoading as bool?,
+        selected: selected == _Unset ? this.selected : selected as bool?,
       );
 }
 

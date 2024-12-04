@@ -30,6 +30,7 @@ abstract class ImageMessage extends Message {
     required this.uri,
     this.width,
     super.isLoading,
+    super.selected,
   }) : super(type: type ?? MessageType.image);
 
   const factory ImageMessage({
@@ -50,6 +51,7 @@ abstract class ImageMessage extends Message {
     required String uri,
     double? width,
     bool? isLoading,
+    bool? selected,
   }) = _ImageMessage;
 
   /// Creates an image message from a map (decoded JSON).
@@ -67,6 +69,7 @@ abstract class ImageMessage extends Message {
     Status? status,
     int? updatedAt,
     bool? isLoading,
+    bool? selected,
   }) =>
       _ImageMessage(
         author: author,
@@ -86,6 +89,7 @@ abstract class ImageMessage extends Message {
         uri: partialImage.uri,
         width: partialImage.width,
         isLoading: isLoading,
+        selected: selected,
       );
 
   /// Image height in pixels.
@@ -122,6 +126,7 @@ abstract class ImageMessage extends Message {
         uri,
         width,
         isLoading,
+        selected,
       ];
 
   @override
@@ -142,6 +147,7 @@ abstract class ImageMessage extends Message {
     String? uri,
     double? width,
     bool? isLoading,
+    bool? selected,
   });
 
   /// Converts an image message to the map representation, encodable to JSON.
@@ -169,6 +175,7 @@ class _ImageMessage extends ImageMessage {
     required super.uri,
     super.width,
     super.isLoading,
+    super.selected,
   }) : super._();
 
   @override
@@ -189,6 +196,7 @@ class _ImageMessage extends ImageMessage {
     String? uri,
     dynamic width = _Unset,
     dynamic isLoading = _Unset,
+    dynamic selected = _Unset,
   }) =>
       _ImageMessage(
         author: author ?? this.author,
@@ -207,6 +215,7 @@ class _ImageMessage extends ImageMessage {
         uri: uri ?? this.uri,
         width: width == _Unset ? this.width : width as double?,
         isLoading: isLoading == _Unset ? this.isLoading : isLoading as bool?,
+        selected: selected == _Unset ? this.selected : selected as bool?,
       );
 }
 

@@ -34,6 +34,7 @@ abstract class Message extends Equatable {
     required this.type,
     this.updatedAt,
     this.isLoading,
+    this.selected,
   });
 
   /// Creates a particular message from a map (decoded JSON).
@@ -99,6 +100,8 @@ abstract class Message extends Equatable {
 
   final bool? isLoading;
 
+  final bool? selected;
+
   /// Creates a copy of the message with an updated data.
   Message copyWith({
     User? author,
@@ -112,6 +115,7 @@ abstract class Message extends Equatable {
     Status? status,
     int? updatedAt,
     bool? isLoading,
+    bool? selected,
   });
 
   /// Converts a particular message to the map representation, serializable to JSON.

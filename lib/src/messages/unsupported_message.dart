@@ -27,6 +27,7 @@ abstract class UnsupportedMessage extends Message {
     MessageType? type,
     super.updatedAt,
     super.isLoading,
+    super.selected,
   }) : super(type: type ?? MessageType.unsupported);
 
   const factory UnsupportedMessage({
@@ -42,6 +43,7 @@ abstract class UnsupportedMessage extends Message {
     MessageType? type,
     int? updatedAt,
     bool? isLoading,
+    bool? selected,
   }) = _UnsupportedMessage;
 
   /// Creates an unsupported message from a map (decoded JSON).
@@ -61,6 +63,7 @@ abstract class UnsupportedMessage extends Message {
         status,
         updatedAt,
         isLoading,
+        selected,
       ];
 
   @override
@@ -76,6 +79,7 @@ abstract class UnsupportedMessage extends Message {
     Status? status,
     int? updatedAt,
     bool? isLoading,
+    bool? selected,
   });
 
   /// Converts an unsupported message to the map representation,
@@ -99,6 +103,7 @@ class _UnsupportedMessage extends UnsupportedMessage {
     super.type,
     super.updatedAt,
     super.isLoading,
+    super.selected,
   }) : super._();
 
   @override
@@ -114,6 +119,7 @@ class _UnsupportedMessage extends UnsupportedMessage {
     dynamic status = _Unset,
     dynamic updatedAt = _Unset,
     dynamic isLoading = _Unset,
+    dynamic selected = _Unset,
   }) =>
       _UnsupportedMessage(
         author: author ?? this.author,
@@ -127,6 +133,7 @@ class _UnsupportedMessage extends UnsupportedMessage {
         status: status == _Unset ? this.status : status as Status?,
         updatedAt: updatedAt == _Unset ? this.updatedAt : updatedAt as int?,
         isLoading: isLoading == _Unset ? this.isLoading : isLoading as bool?,
+        selected: selected == _Unset ? this.selected : selected as bool?,
       );
 }
 

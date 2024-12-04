@@ -29,6 +29,7 @@ abstract class FileMessage extends Message {
     MessageType? type,
     super.updatedAt,
     required this.uri,
+    super.selected,
   }) : super(type: type ?? MessageType.file);
 
   const factory FileMessage({
@@ -48,11 +49,11 @@ abstract class FileMessage extends Message {
     MessageType? type,
     int? updatedAt,
     required String uri,
+    bool? selected,
   }) = _FileMessage;
 
   /// Creates a file message from a map (decoded JSON).
-  factory FileMessage.fromJson(Map<String, dynamic> json) =>
-      _$FileMessageFromJson(json);
+  factory FileMessage.fromJson(Map<String, dynamic> json) => _$FileMessageFromJson(json);
 
   /// Creates a full file message from a partial one.
   factory FileMessage.fromPartial({
@@ -66,6 +67,7 @@ abstract class FileMessage extends Message {
     bool? showStatus,
     Status? status,
     int? updatedAt,
+    bool? selected,
   }) =>
       _FileMessage(
         author: author,
@@ -84,6 +86,7 @@ abstract class FileMessage extends Message {
         type: MessageType.file,
         updatedAt: updatedAt,
         uri: partialFile.uri,
+        selected: selected,
       );
 
   /// Specify whether the message content is currently being loaded.
@@ -119,6 +122,7 @@ abstract class FileMessage extends Message {
         status,
         updatedAt,
         uri,
+        selected,
       ];
 
   @override
@@ -138,6 +142,7 @@ abstract class FileMessage extends Message {
     Status? status,
     int? updatedAt,
     String? uri,
+    bool? selected,
   });
 
   /// Converts a file message to the map representation, encodable to JSON.
@@ -164,6 +169,7 @@ class _FileMessage extends FileMessage {
     super.type,
     super.updatedAt,
     required super.uri,
+    super.selected,
   }) : super._();
 
   @override
@@ -185,28 +191,25 @@ class _FileMessage extends FileMessage {
     dynamic updatedAt = _Unset,
     String? uri,
     dynamic width = _Unset,
+    dynamic selected = _Unset,
   }) =>
       _FileMessage(
         author: author ?? this.author,
         createdAt: createdAt == _Unset ? this.createdAt : createdAt as int?,
         id: id ?? this.id,
         isLoading: isLoading == _Unset ? this.isLoading : isLoading as bool?,
-        metadata: metadata == _Unset
-            ? this.metadata
-            : metadata as Map<String, dynamic>?,
+        metadata: metadata == _Unset ? this.metadata : metadata as Map<String, dynamic>?,
         mimeType: mimeType == _Unset ? this.mimeType : mimeType as String?,
         name: name ?? this.name,
         remoteId: remoteId == _Unset ? this.remoteId : remoteId as String?,
-        repliedMessage: repliedMessage == _Unset
-            ? this.repliedMessage
-            : repliedMessage as Message?,
+        repliedMessage: repliedMessage == _Unset ? this.repliedMessage : repliedMessage as Message?,
         roomId: roomId == _Unset ? this.roomId : roomId as String?,
-        showStatus:
-            showStatus == _Unset ? this.showStatus : showStatus as bool?,
+        showStatus: showStatus == _Unset ? this.showStatus : showStatus as bool?,
         size: size ?? this.size,
         status: status == _Unset ? this.status : status as Status?,
         updatedAt: updatedAt == _Unset ? this.updatedAt : updatedAt as int?,
         uri: uri ?? this.uri,
+        selected: selected == _Unset ? this.selected : selected as bool?,
       );
 }
 
